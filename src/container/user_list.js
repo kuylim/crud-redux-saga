@@ -25,12 +25,10 @@ class UserList extends Component{
         this.props.fetchOneUser(event.target.value, USER_TOKEN)
     }*/
 
-
-
     render(){
         return(
             <di>
-                <button className="btn btn-success pull-right">Show All Users</button>
+                <center><h1>User List</h1></center>
                 <table className="table table-hover">
                     <thead>
                         <tr>
@@ -42,9 +40,7 @@ class UserList extends Component{
                             <th>Delete</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <UserListElement/>
-                    </tbody>
+                    <UserListElement/>
                 </table>
             </di>
         );

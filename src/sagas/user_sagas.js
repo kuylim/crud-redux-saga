@@ -2,7 +2,7 @@
  * Created by acer on 11/29/2016.
  */
 import {call, put, select} from "redux-saga/effects";
-import ApiUsers from "../api/user_signin";
+import ApiUsers from "../api/user";
 import { browserHistory } from 'react-router';
 
 export function* userSignin(action) {

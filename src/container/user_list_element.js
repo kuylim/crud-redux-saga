@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class UserListElement extends Component{
-
   constructor(props){
     super(props);
+
+    this.state = {
+        users: [],
+     }
   }
 
   renderUsers(userData){
@@ -22,9 +25,7 @@ class UserListElement extends Component{
               <td>{email}</td>
               <td>{phone}</td>
               <td>
-                  <Link to={'edit/' + id}>
-                      <input type="button" value={id}/>
-                  </Link>
+                  edit
               </td>
               <td><a href="#" className="btn btn-danger">Remove</a></td>
 
@@ -32,20 +33,15 @@ class UserListElement extends Component{
       );
   }
 
+  componentWillReceiveProps (data){
+    this.setState({
+      users: data.user,
+    });
+    console.log("componentWillUpdate", data);
+  }
 
   render(){
-    if(this.props.user.token != null){
-      return(
-        <tr></tr>
-      );
-    }
-    else if (true) {
-      
-    }(this.props.user.length != 0)
-    {
-      this.props.user.map(this.renderUsers);
-    }
-
+      return(<tbody>{this.state.users.map(this.renderUsers)}</tbody>);
   }
 }
 
