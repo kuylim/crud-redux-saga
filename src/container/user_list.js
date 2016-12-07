@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import { Button, Glyphicon } from 'react-bootstrap';
 import UserListElement from './user_list_element';
+import { USER_TOKEN } from './user_signin';
 
-export var USER_TOKEN;
 
 class UserList extends Component{
 
@@ -14,10 +14,9 @@ class UserList extends Component{
         super(props);
 
         if(this.props.user.token != null){
-          USER_TOKEN = this.props.user.token
-                this.props.load_user({
-                    data: USER_TOKEN,
-                });
+            this.props.load_user({
+                data: USER_TOKEN,
+            });
         }
     }
 

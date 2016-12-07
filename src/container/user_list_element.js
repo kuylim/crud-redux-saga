@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import actions from '../actions';
+import { USER_TOKEN } from './user_signin';
 
 class UserListElement extends Component{
   constructor(props){
@@ -10,6 +13,18 @@ class UserListElement extends Component{
      }
   }
 
+  componentWillReceiveProps (data){
+    this.setState({
+      users: data.user,
+    });
+    console.log("componentWillUpdate", data);
+  }
+
+   updateUser(event){
+    alert("click work");
+  }
+
+
   renderUsers(userData){
 
       const id = Object.values(userData._id);
@@ -19,34 +34,38 @@ class UserListElement extends Component{
       const phone = userData.mobile;
 
       return(
-          <tr key = {userData.email}>
+          <tr key = {id}>
               <td>{firstname}</td>
               <td>{lastname}</td>
               <td>{email}</td>
               <td>{phone}</td>
               <td>
-                  edit
+                <Link to={'edit/' + id}>
+                    <input type="button" value="Edit" className="btn btn-warning"/>
+                </Link>
               </td>
-              <td><a href="#" className="btn btn-danger">Remove</a></td>
-
+              <td>
+                <a href="#" className="btn btn-danger">Remove</a>
+              </td>
           </tr>
       );
   }
 
-  componentWillReceiveProps (data){
-    this.setState({
-      users: data.user,
-    });
-    console.log("componentWillUpdate", data);
-  }
-
   render(){
-      return(<tbody>{this.state.users.map(this.renderUsers)}</tbody>);
-  }
+      return(
+        <tbody>
+          {this.state.users.map(this.renderUsers)}
+        </tbody>
+      );
+    }
 }
 
 function mapStateToProps(state){
   return {user: state.user}
 }
 
-export default connect(mapStateToProps,null)(UserListElement);
+const mapDispatchToProps = (dispatch) =>({
+  edit_user: (data) => dispatch(actions.findOneUser(data))
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(UserListElement);

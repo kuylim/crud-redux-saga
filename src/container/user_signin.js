@@ -8,6 +8,8 @@ import actions from '../actions';
 import { selectors } from '../reducers';
 import { browserHistory } from 'react-router';
 
+export var USER_TOKEN;
+
 class UserSignin extends Component{
 
     constructor(props){
@@ -43,9 +45,13 @@ class UserSignin extends Component{
 
     componentWillReceiveProps(data){
       if(data.user.token!=null && data.user.role == 1){
+        console.log("token", data.user);
+        USER_TOKEN = data.user.token;
         browserHistory.push('/user');
       }
       else if (data.user.token!=null && data.user.role == 2) {
+        console.log("token", data.user);
+        USER_TOKEN = data.user.token;
         browserHistory.push('/translator');
       }
     }

@@ -20,10 +20,24 @@ export function* userSignin(action) {
 }
 
 export function* loadUsers(action){
-    console.log("saga actiion", action);
+  try{
+    console.log("saga receive action", action);
     const users = yield call(ApiUsers.fetchUsers,action);
     yield put({
       type: 'LOAD_USER_SUCCESS',
       payload: users.data,
     });
+  }
+  catch(error){
+    alert("Please check your internet connection");
+  }
+}
+
+export function* findOneUser(action){
+  console.log("saga receive action", action);
+  const user = yield call(ApiUsers.fetchOneUser, action);
+  yield put({
+    type: 'FIND_ONE_USER_SUCCESS',
+    payload: user.data,
+  });
 }

@@ -13,7 +13,13 @@ const fetchUsers = (key) =>({
   payload: key,
 });
 
+const findOneUser = (data) => ({
+  type: 'FIND_ONE_USER',
+  payload: data,
+});
+
 export default{
   siginRequest,
   fetchUsers,
+  findOneUser,
 }
