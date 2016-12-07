@@ -11,6 +11,9 @@ export default function (state = {}, action) {
         case 'LOAD_USER_SUCCESS':
           return action.payload;
         break;
+        case 'FIND_ONE_USER_SUCCESS':
+          return action.payload;
+        break;
     }
     return state;
 }

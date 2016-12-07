@@ -13,20 +13,60 @@ class UserEdit extends Component{
     constructor(props)
     {
         super(props);
+
+        this.state = {
+              first_name: '',
+              last_name: '',
+              password: '',
+              email: '',
+              address: '',
+              country: '',
+              state: '',
+              city: '',
+              zip: '',
+              mobile: '',
+              confirm_email: true,
+              active: true,
+              role: 1,
+         }
+
+         this.props.edit_user({
+             data: {
+               id: this.props.params.id,
+               key: USER_TOKEN,
+             },
+         });
+
+         this.onInputChange = this.onInputChange.bind(this);
+         this.updateUser = this.updateUser.bind(this);
+    }
+
+    onInputChange(event){
+        this.setState({[event.target.name] : event.target.value})
     }
 
 
-  /*  loadUserDetail(event){
-        this.props.fetchOneUser(this.props.params.id,USER_TOKEN);
-    }*/
-
-    componentWillMount() {
-      this.props.edit_user({
-          data: {
-            id: this.props.params.id,
-            key: USER_TOKEN,
-          },
+    componentWillReceiveProps (data){
+      this.setState({
+        first_name : data.user.first_name,
+        last_name : data.user.last_name,
+        password : data.user.password,
+        email : data.user.email,
+        address : data.user.address,
+        country : data.user.country,
+        state : data.user.state,
+        city : data.user.city,
+        zip : data.user.zip,
+        mobile : data.user.mobile,
+        confirm_email : data.user.confirm_email,
+        active : data.user.active,
+        role : data.user.role,
       });
+      console.log("componentWillUpdate", data);
+    }
+
+    updateUser(event){
+      alert("you have update");
     }
 
     render()
@@ -36,26 +76,50 @@ class UserEdit extends Component{
               <form className="form-group">
                       <div>
                           Firstname:
-                          <input  className="form-control" type="text" placeholder = "firstname"/>
+                          <input
+                            className="form-control" type="text"
+                            placeholder = "firstname"
+                            value={this.state.first_name}
+                            name="first_name"
+                            onChange={this.onInputChange}
+                          />
                       </div>
                       <div>
                           Lastname:
-                          <input  className="form-control" type="text" placeholder = "lastname"/>
+                          <input
+                            className="form-control" type="text"
+                            placeholder = "lastname"
+                            value={this.state.last_name}
+                            name="last_name"
+                            onChange={this.onInputChange}
+                          />
                       </div>
                       <div>
                           Email:
-                          <input  className="form-control" type="email" placeholder = "email"/>
+                          <input
+                             className="form-control" type="email"
+                             placeholder = "email"
+                             value={this.state.email}
+                             name="email"
+                             onChange={this.onInputChange}
+                           />
                       </div>
                       <div>
                           Mobile:
-                          <input  className="form-control" type="text" placeholder = "mobile"/>
+                          <input
+                            className="form-control" type="text"
+                            placeholder = "mobile"
+                            value={this.state.mobile}
+                            name="mobile"
+                            onChange={this.onInputChange}
+                          />
                       </div>
 
                       <br/>
 
                       <div>
                           <Link to={'/translator'}>
-                            <button className="btn btn-warning">Update</button>
+                            <button className="btn btn-warning" onClick={this.updateUser}>Update</button>
                           </Link>
                       </div>
               </form>
