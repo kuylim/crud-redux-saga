@@ -34,10 +34,25 @@ export function* loadUsers(action){
 }
 
 export function* findOneUser(action){
+  try{
+    console.log("saga receive action", action);
+    const user = yield call(ApiUsers.fetchOneUser, action);
+    yield put({
+      type: 'FIND_ONE_USER_SUCCESS',
+      payload: user.data,
+    });
+  }
+  catch(error){
+    alert("Please check your internet connection");
+  }
+}
+
+export function* editUser(action){
   console.log("saga receive action", action);
-  const user = yield call(ApiUsers.fetchOneUser, action);
+  const update = yield call(ApiUsers.modidifyUser, action);
+  const users = yield call(ApiUsers.fetchUsers,action);
   yield put({
-    type: 'FIND_ONE_USER_SUCCESS',
-    payload: user.data,
+    type: 'LOAD_USER_SUCCESS',
+    payload: users.data,
   });
 }

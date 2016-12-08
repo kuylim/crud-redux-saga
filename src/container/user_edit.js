@@ -30,7 +30,7 @@ class UserEdit extends Component{
               role: 1,
          }
 
-         this.props.edit_user({
+         this.props.edit_request({
              data: {
                id: this.props.params.id,
                key: USER_TOKEN,
@@ -66,7 +66,13 @@ class UserEdit extends Component{
     }
 
     updateUser(event){
-      alert("you have update");
+      this.props.do_edit({
+          data: {
+            id: this.props.params.id,
+            key: USER_TOKEN,
+            user: this.state,
+          },
+      });
     }
 
     render()
@@ -133,7 +139,8 @@ function mapStateToProps(state){
 }
 
 const mapDispatchToProps = (dispatch) =>({
-  edit_user: (data) => dispatch(actions.findOneUser(data))
+  edit_request: (data) => dispatch(actions.findOneUser(data)),
+  do_edit: (data) => dispatch(actions.updateRequest(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserEdit);

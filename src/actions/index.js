@@ -18,8 +18,14 @@ const findOneUser = (data) => ({
   payload: data,
 });
 
+const updateRequest = (data) => ({
+  type: 'UPDATE_REQUEST',
+  payload: data,
+});
+
 export default{
   siginRequest,
   fetchUsers,
   findOneUser,
+  updateRequest,
 }

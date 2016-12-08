@@ -29,7 +29,7 @@ export default class ApiUsers {
           headers:
           {
             "X-Api-Key": "AbCdEfGhIjK1",
-            "X-Auth-Token": action.payload.data,
+            "X-Auth-Token": action.payload.data.key,
           }
         }
       );
@@ -50,8 +50,24 @@ export default class ApiUsers {
                 }
             }
         );
-    
+
         console.log('request', request)
         return request;
+    }
+
+    static modidifyUser(action){
+      const url = `${ROOT_URL}api/v1/users/${action.payload.data.id}`;
+
+      const request = axios.patch(url,
+         action.payload.data.user,
+          {
+              headers:
+              {
+                  "X-Api-Key": "AbCdEfGhIjK1",
+                  "X-Auth-Token" : action.payload.data.key,
+              }
+          }
+      );
+      return request;
     }
 }

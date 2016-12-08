@@ -15,7 +15,9 @@ class UserList extends Component{
 
         if(this.props.user.token != null){
             this.props.load_user({
-                data: USER_TOKEN,
+                data: {
+                  key:USER_TOKEN
+                },
             });
         }
     }
