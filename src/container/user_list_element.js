@@ -20,7 +20,13 @@ class UserListElement extends Component{
     console.log("componentWillUpdate", data);
   }
 
-   updateUser(event){
+  componentDidMount() {
+    this.setState({
+      users: this.props.user,
+    });
+  }
+
+  updateUser(event){
     alert("click work");
   }
 
