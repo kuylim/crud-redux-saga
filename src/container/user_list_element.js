@@ -45,7 +45,9 @@ class UserListElement extends Component{
                 </Link>
               </td>
               <td>
-                <a href="#" className="btn btn-danger">Remove</a>
+                <Link to={'delete/' + id}>
+                  <input type="button" value="Remove" className="btn btn-danger"/>
+                </Link>
               </td>
           </tr>
       );

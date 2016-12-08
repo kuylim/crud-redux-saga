@@ -7,6 +7,7 @@ import User_login_success from './components/user_login_success';
 import Translator_login_success from './components/translator_login_success';
 import UserList from './container/user_list';
 import UserEdit from './container/user_edit';
+import UserDelete from './container/user_delete';
 // build the router
 
 const router = (
@@ -17,6 +18,7 @@ const router = (
             <Route path="/user" component={User_login_success}/>
             <Route path="/translator" component={UserList}/>
             <Route path= "/edit(/:id)" component={UserEdit}/>
+            <Route path = "/delete(/:id)" component={UserDelete}/>
         </Route>
   </Router>
 );

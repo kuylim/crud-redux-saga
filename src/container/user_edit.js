@@ -1,5 +1,5 @@
 /**
- * Created by acer on 11/21/2016.
+ * Created by kuylim on 11/21/2016.
  */
 import React ,{ Component } from 'react';
 import { connect } from 'react-redux';
@@ -73,6 +73,8 @@ class UserEdit extends Component{
             user: this.state,
           },
       });
+
+      alert("Update user success");
     }
 
     render()

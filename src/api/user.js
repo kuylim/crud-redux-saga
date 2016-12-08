@@ -36,9 +36,8 @@ export default class ApiUsers {
       return request;
     }
 
+    // finde one user
     static fetchOneUser(action) {
-
-        // /api/v1/users/5812b3d4151e7713d17f4013
         const url = `${ROOT_URL}api/v1/users/${action.payload.data.id}`;
 
         const request = axios.get(url,
@@ -55,6 +54,7 @@ export default class ApiUsers {
         return request;
     }
 
+    // edit user
     static modidifyUser(action){
       const url = `${ROOT_URL}api/v1/users/${action.payload.data.id}`;
 
@@ -67,6 +67,20 @@ export default class ApiUsers {
                   "X-Auth-Token" : action.payload.data.key,
               }
           }
+      );
+      return request;
+    }
+
+    static deleteUser(action){
+      const url = `${ROOT_URL}api/v1/users/${action.payload.data.id}`;
+      const request = axios.delete(url,
+        {
+          headers:
+          {
+            "X-Api-Key": "AbCdEfGhIjK1",
+            "X-Auth-Token": action.payload.data.key,
+          }
+        }
       );
       return request;
     }

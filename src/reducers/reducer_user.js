@@ -14,9 +14,6 @@ export default function (state = {}, action) {
         case 'FIND_ONE_USER_SUCCESS':
           return action.payload;
         break;
-        case 'UPDATE_SUCCESS':
-          return action.payload;
-        break;
     }
     return state;
 }
