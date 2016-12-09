@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import actions from '../actions';
-import { USER_TOKEN } from './user_signin';
+import { browserHistory } from 'react-router';
 
 class UserListElement extends Component{
   constructor(props){
@@ -11,25 +11,18 @@ class UserListElement extends Component{
     this.state = {
         users: [],
      }
+
+     if(this.props.user.length == 0){
+       browserHistory.push('/');
+     }
   }
 
   componentWillReceiveProps (data){
-    this.setState({
-      users: data.user,
-    });
+      this.setState({
+        users: data.user,
+      });
     console.log("componentWillUpdate", data);
   }
-
-  componentDidMount() {
-    this.setState({
-      users: this.props.user,
-    });
-  }
-
-  updateUser(event){
-    alert("click work");
-  }
-
 
   renderUsers(userData){
 

@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux'
 import actions from '../actions';
 import { selectors } from '../reducers';
 import { browserHistory } from 'react-router';
+import { saveState, loadState } from '../localstorage/local_storage';
 
 export var USER_TOKEN;
 
@@ -44,14 +45,18 @@ class UserSignin extends Component{
     }
 
     componentWillReceiveProps(data){
-      if(data.user.token!=null && data.user.role == 1){
-        console.log("token", data.user);
-        USER_TOKEN = data.user.token;
+      if(data.auth.token!=null && data.auth.role == 1){
+        console.log("token", data.auth);
+        //USER_TOKEN = data.auth.token;
+        saveState(data.auth.token);
+
         browserHistory.push('/user');
       }
-      else if (data.user.token!=null && data.user.role == 2) {
-        console.log("token", data.user);
-        USER_TOKEN = data.user.token;
+      else if (data.auth.token!=null && data.auth.role == 2) {
+        console.log("token", data.auth);
+        //USER_TOKEN = data.auth.token;
+        saveState(data.auth.token);
+        console.log("load state", loadState());
         browserHistory.push('/translator');
       }
     }
@@ -93,7 +98,9 @@ class UserSignin extends Component{
 }
 
 function mapStateToProps(state){
-  return {user: state.user}
+  return {
+    auth: state.auth
+  }
 }
 
 const mapDispatchToProps = (dispatch) =>({

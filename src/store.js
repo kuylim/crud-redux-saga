@@ -5,7 +5,7 @@ import createSagaMiddleware from "redux-saga";
 import freeze from "redux-freeze";
 import { rootReducer } from "./reducers/index";
 import { sagas } from "./sagas/index";
-
+import { loadState, saveState } from './localstorage/local_storage';
 // add the middlewares
 let middlewares = [];
 

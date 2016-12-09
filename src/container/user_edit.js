@@ -4,9 +4,9 @@
 import React ,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { USER_TOKEN } from './user_signin';
 import { Link } from 'react-router';
 import actions from '../actions';
+import { saveState, loadState } from '../localstorage/local_storage';
 
 class UserEdit extends Component{
 
@@ -33,7 +33,7 @@ class UserEdit extends Component{
          this.props.edit_request({
              data: {
                id: this.props.params.id,
-               key: USER_TOKEN,
+               key: loadState(),
              },
          });
 
@@ -69,7 +69,7 @@ class UserEdit extends Component{
       this.props.do_edit({
           data: {
             id: this.props.params.id,
-            key: USER_TOKEN,
+            key: loadState(),
             user: this.state,
           },
       });

@@ -1,7 +1,7 @@
 import React ,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { USER_TOKEN } from './user_signin';
+import { saveState, loadState } from '../localstorage/local_storage';
 import { Link } from 'react-router';
 import actions from '../actions';
 import { browserHistory } from 'react-router';
@@ -18,7 +18,7 @@ class UserDelete extends Component{
     this.props.do_delete({
         data: {
           id: this.props.params.id,
-          key: USER_TOKEN,
+          key: loadState(),
         },
     });
     alert("Delete User success");
